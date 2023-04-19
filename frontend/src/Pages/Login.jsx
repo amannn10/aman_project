@@ -84,7 +84,7 @@ export const Login = () => {
               load
                 ? 'py-3 items-center flex justify-center cursor-not-allowed'
                 : ''
-            } mt-3 border-2 border-red-400 text-red-400 hover:text-white hover:bg-red-400 text-center rounded-md py-2 tracking-wider font-medium w-full mb-3`}
+            } mt-3 border-2 border-red-400 hover:text-red-400 text-white bg-red-400 hover:bg-white text-center rounded-md py-2 tracking-wider font-medium w-full mb-3`}
           >
             {load && (
               <svg
