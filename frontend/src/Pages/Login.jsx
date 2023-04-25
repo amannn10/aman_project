@@ -3,10 +3,11 @@ import { IoMdSettings } from 'react-icons/io';
 import { GiRobotHelmet } from 'react-icons/gi';
 import { IoPersonSharp } from 'react-icons/io5';
 import { FaKey } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginUser } from '../Api/User';
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [load, setLoad] = useState(false);
   const [error, setError] = useState('');
 
@@ -21,10 +22,13 @@ export const Login = () => {
     const response = await LoginUser(data);
     // console.log(response.data);
     if (response.status == 200) {
-      localStorage.setItem('email', response.data.email);
+      localStorage.setItem('email', response.data.data.email);
+      localStorage.setItem('name', response.data.data.username);
       e.target.email.value = '';
       e.target.password.value = '';
+      setLoad(false);
       alert('Login Successfully');
+      navigate('/');
     } else {
       setError(response.data.message);
     }

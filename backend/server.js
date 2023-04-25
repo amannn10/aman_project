@@ -4,6 +4,7 @@ import cors from 'cors';
 dotenv.config();
 import './config/db.js';
 import UserRoutes from './routes/UserRoutes.js';
+import OrderRoutes from './routes/OrderRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,6 +17,7 @@ const corsOrigin = {
 };
 app.use(cors(corsOrigin));
 app.use('/api/user', UserRoutes);
+app.use('/api/order', OrderRoutes);
 
 app.get('/', (req, res) => {
   res.send('Working!!');

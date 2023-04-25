@@ -5,8 +5,10 @@ import { IoPersonSharp } from 'react-icons/io5';
 import { FaKey } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { PostUser } from '../Api/User';
+import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
+  const navigate = useNavigate();
   const [load, setLoad] = useState(false);
   const [error, setError] = useState('');
 
@@ -23,11 +25,13 @@ export const Register = () => {
     const response = await PostUser(data);
     console.log(response.data);
     if (response.status == 200) {
-      localStorage.setItem('email', response.data.email);
+      localStorage.setItem('email', e.target.email.value);
+      localStorage.setItem('name', e.target.name.value);
       e.target.name.value = '';
       e.target.email.value = '';
       e.target.password.value = '';
       alert('Register Successfully');
+      navigate('/');
     } else {
       setError(response.data.message);
     }
